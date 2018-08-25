@@ -12,7 +12,8 @@
     "lint": "polymer lint arc-request-settings-panel.html",
     "test-sauce": "polymer test --plugin sauce --job-name \"arc-request-settings-panel:local-test\"",
     "test": "polymer test --plugin local",
-    "update-types": "gen-typescript-declarations --deleteExisting --outDir ."
+    "update-types": "gen-typescript-declarations --deleteExisting --outDir .",
+    "analyze": "polymer analyze -i arc-request-settings-panel.html > analysis.json"
   },
   "repository": {
     "type": "git",
