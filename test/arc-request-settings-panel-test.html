@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>arc-request-settings-panel test</title>
+  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+  <link rel="import" href="../arc-request-settings-panel.html">
+</head>
+<body>
+  <test-fixture id="Basic">
+    <template>
+      <arc-request-settings-panel></arc-request-settings-panel>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="SysVarDisabled">
+    <template>
+      <arc-request-settings-panel system-variables-disabled></arc-request-settings-panel>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="SslDisabled">
+    <template>
+      <arc-request-settings-panel ssl-disabled></arc-request-settings-panel>
+    </template>
+  </test-fixture>
+
+  <script>
+  suite('arc-request-settings-panel', () => {
+    let element;
+    setup((done) => {
+      element = fixture('Basic');
+      flush(() => done());
+    });
+
+    test('Shows timeout settings page', function() {
+      const node = element.shadowRoot.querySelector('paper-item[data-page="1"]');
+      MockInteractions.tap(node);
+      assert.equal(element.page, 1);
+    });
+
+    [
+      ['local variables', 1, 'variablesEnabled'],
+      ['system variables', 2, 'systemVariables'],
+      ['redirects', 3, 'followRedirects'],
+      ['SSL validation', 4, 'validateCertificates'],
+      ['native request', 5, 'nativeTransport']
+    ].forEach((item) => {
+      test(`Toggles ${item[0]}`, function() {
+        const node = element.shadowRoot.querySelectorAll('paper-item')[item[1]];
+        MockInteractions.tap(node);
+        assert.isTrue(element[item[2]]);
+      });
+    });
+  });
+
+  suite('Disabled items', () => {
+    test('Ignores input on disabled system variables', (done) => {
+      const element = fixture('SysVarDisabled');
+      flush(() => {
+        const node = element.shadowRoot.querySelectorAll('paper-item')[2];
+        MockInteractions.tap(node);
+        assert.isFalse(element.systemVariables);
+        done();
+      });
+    });
+
+    test('Ignores input on disabled ssl certificates', (done) => {
+      const element = fixture('SslDisabled');
+      flush(() => {
+        const node = element.shadowRoot.querySelectorAll('paper-item')[4];
+        MockInteractions.tap(node);
+        assert.isFalse(element.validateCertificates);
+        done();
+      });
+    });
+  });
+  </script>
+</body>
+</html>
