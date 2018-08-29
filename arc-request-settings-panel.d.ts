@@ -19,8 +19,9 @@
 /// <reference path="../iron-pages/iron-pages.d.ts" />
 /// <reference path="../paper-icon-button/paper-icon-button.d.ts" />
 /// <reference path="../paper-styles/shadow.d.ts" />
+/// <reference path="../arc-settings-panel-mixin/arc-settings-panel-mixin.d.ts" />
 
-declare namespace ApiElements {
+declare namespace UiElements {
 
   /**
    * Request settings panel for Advanced REST Client
@@ -40,12 +41,9 @@ declare namespace ApiElements {
    * `--arc-font-body1` | Mixin apllied to the description elements | `{}`
    * `--arc-font-subhead` | Mixin applied to the section headers | `{}`
    */
-  class ArcRequestSettingsPanel extends Polymer.Element {
-
-    /**
-     * Currently rendered section
-     */
-    page: number|null|undefined;
+  class ArcRequestSettingsPanel extends
+    ArcComponents.ArcSettingsPanelMixin(
+    Polymer.Element) {
 
     /**
      * Variables support enabled setting.
@@ -89,23 +87,20 @@ declare namespace ApiElements {
      * Chrome apps does not have this option.
      */
     systemVariablesDisabled: boolean|null|undefined;
+    connectedCallback(): void;
+    _processValues(values: any): any;
+    _setSettings(values: any): void;
     _computeVariablesLabel(variablesEnabled: any): any;
     _computeTimeoutLabel(requestTimeout: any): any;
-
-    /**
-     * Shows internal sub-page
-     */
-    _showPage(e: any): void;
-
-    /**
-     * restores the main page of the editor.
-     */
-    back(): void;
-    _toggleOption(e: any): void;
-    _cancelEvent(e: any): void;
+    _varsChanged(value: any): void;
+    _timeoutChanged(value: any): void;
+    _redirectsChanged(value: any): void;
+    _certsChanged(value: any): void;
+    _nativeTransportChanged(value: any): void;
+    _sysVarsChanged(value: any): void;
   }
 }
 
 interface HTMLElementTagNameMap {
-  "arc-request-settings-panel": ApiElements.ArcRequestSettingsPanel;
+  "arc-request-settings-panel": UiElements.ArcRequestSettingsPanel;
 }
