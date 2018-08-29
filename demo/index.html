@@ -11,8 +11,9 @@
   <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../arc-electron-default-theme/arc-electron-default-theme.html">
+  <link rel="import" href="../../arc-local-store-preferences/arc-local-store-preferences.html">
   <link rel="import" href="../arc-request-settings-panel.html">
+  <link rel="import" href="../../arc-electron-default-theme/arc-electron-default-theme.html">
   <style>
   body,
   html {
@@ -33,8 +34,9 @@
 <body unresolved>
   <dom-bind id="demo">
     <template is="dom-bind">
+      <arc-local-store-preferences></arc-local-store-preferences>
       <div class="vertical-section-container centered">
-        <arc-request-settings-panel variables-enabled request-timeout="60" follow-redirects system-variables system-variables-disabled></arc-request-settings-panel>
+        <arc-request-settings-panel></arc-request-settings-panel>
       </div>
     </template>
   </dom-bind>

@@ -22,7 +22,7 @@ the License.
 <link rel="import" href="../iron-pages/iron-pages.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-styles/shadow.html">
-
+<link rel="import" href="../arc-settings-panel-mixin/arc-settings-panel-mixin.html">
 <dom-module id="arc-request-settings-panel">
   <template>
     <style>
@@ -182,37 +182,35 @@ the License.
    * @polymer
    * @demo demo/index.html
    * @memberof ApiElements
+   * @appliesMixin ArcComponents.ArcSettingsPanelMixin
    */
-  class ArcRequestSettingsPanel extends Polymer.Element {
+  class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polymer.Element) {
     static get is() {return 'arc-request-settings-panel';}
     static get properties() {
       return {
-        // Currently rendered section
-        page: {
-          type: Number,
-          value: 0,
-          notify: true
-        },
         /**
          * Variables support enabled setting.
          */
         variablesEnabled: {
           type: Boolean,
-          notify: true
+          notify: true,
+          observer: '_varsChanged'
         },
         /**
          * Sequest default timeout setting.
          */
         requestTimeout: {
           type: Number,
-          notify: true
+          notify: true,
+          observer: '_timeoutChanged'
         },
         /**
          * Global option to follow redirects
          */
         followRedirects: {
           type: Boolean,
-          notify: true
+          notify: true,
+          observer: '_redirectsChanged'
         },
         /**
          * Setting to validate certificates when making a request.
@@ -220,14 +218,16 @@ the License.
          */
         validateCertificates: {
           type: Boolean,
-          notify: true
+          notify: true,
+          observer: '_certsChanged'
         },
         /**
          * Enables platform's native HTTP transport.
          */
         nativeTransport: {
           type: Boolean,
-          notify: true
+          notify: true,
+          observer: '_nativeTransportChanged'
         },
         /**
          * When set `validateCertificates` options is disabled.
@@ -238,7 +238,11 @@ the License.
          * Collects information abour system variables when evaluating
          * request.
          */
-        systemVariables: {type: Boolean, notify: true},
+        systemVariables: {
+          type: Boolean,
+          notify: true,
+          observer: '_sysVarsChanged'
+        },
         /**
          * When set `systemVariables` options is disabled.
          * Chrome apps does not have this option.
@@ -258,39 +262,80 @@ the License.
       return 'No timeout';
     }
 
-    // Shows internal sub-page
-    _showPage(e) {
-      const path = e.composedPath();
-      let target;
-      const nodeName = 'PAPER-ITEM';
-      while (true) {
-        const item = path.shift();
-        if (!item) {
-          return;
-        }
-        if (item.nodeName === nodeName) {
-          target = item;
-          break;
-        }
-      }
-      const page = Number(target.dataset.page);
-      if (page === page) {
-        this.page = page;
+    connectedCallback() {
+      super.connectedCallback();
+      if (this.page === undefined) {
+        this.page = 0;
       }
     }
-    // restores the main page of the editor.
-    back() {
-      this.page = 0;
+
+    _processValues(values) {
+      if (typeof values.variablesEnabled === 'undefined') {
+        values.variablesEnabled = true;
+      } else {
+        values.variablesEnabled = this._boolValue(values.variablesEnabled);
+      }
+      if (typeof values.followRedirects === 'undefined') {
+        values.followRedirects = true;
+      } else {
+        values.followRedirects = this._boolValue(values.followRedirects);
+      }
+      if (typeof values.requestTimeout === 'undefined') {
+        values.requestTimeout = 45;
+      } else {
+        values.requestTimeout = this._numValue(values.requestTimeout);
+      }
+      if (typeof values.validateCertificates === 'undefined') {
+        values.validateCertificates = false;
+      } else {
+        values.validateCertificates = this._boolValue(values.validateCertificates);
+      }
+      if (typeof values.nativeTransport === 'undefined') {
+        values.nativeTransport = false;
+      } else {
+        values.nativeTransport = this._boolValue(values.nativeTransport);
+      }
+      if (typeof values.systemVariables === 'undefined') {
+        values.systemVariables = true;
+      } else {
+        values.systemVariables = this._boolValue(values.systemVariables);
+      }
+      return values;
     }
 
-    _toggleOption(e) {
-      const button = e.currentTarget.querySelector('paper-toggle-button');
-      button.checked = !button.checked;
+    _setSettings(values) {
+      this.__settingsRestored = false;
+      this.variablesEnabled = values.variablesEnabled;
+      this.followRedirects = values.followRedirects;
+      this.requestTimeout = values.requestTimeout;
+      this.validateCertificates = values.validateCertificates;
+      this.nativeTransport = values.nativeTransport;
+      this.systemVariables = values.systemVariables;
+      this.__settingsRestored = true;
     }
 
-    _cancelEvent(e) {
-      e.preventDefault();
-      e.stopPropagation();
+    _varsChanged(value) {
+      this.updateSetting('variablesEnabled', value);
+    }
+
+    _timeoutChanged(value) {
+      this.updateSetting('requestTimeout', value);
+    }
+
+    _redirectsChanged(value) {
+      this.updateSetting('followRedirects', value);
+    }
+
+    _certsChanged(value) {
+      this.updateSetting('validateCertificates', value);
+    }
+
+    _nativeTransportChanged(value) {
+      this.updateSetting('nativeTransport', value);
+    }
+
+    _sysVarsChanged(value) {
+      this.updateSetting('systemVariables', value);
     }
   }
   window.customElements.define(ArcRequestSettingsPanel.is, ArcRequestSettingsPanel);
