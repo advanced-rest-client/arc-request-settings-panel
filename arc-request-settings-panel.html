@@ -337,6 +337,21 @@ the License.
     _sysVarsChanged(value) {
       this.updateSetting('systemVariables', value);
     }
+
+    _settingsChanged(key, value) {
+      this.__settingsRestored = false;
+      switch (key) {
+        case 'variablesEnabled':
+        case 'requestTimeout':
+        case 'followRedirects':
+        case 'validateCertificates':
+        case 'nativeTransport':
+        case 'systemVariables':
+          this[key] = value;
+          break;
+      }
+      this.__settingsRestored = true;
+    }
   }
   window.customElements.define(ArcRequestSettingsPanel.is, ArcRequestSettingsPanel);
   </script>

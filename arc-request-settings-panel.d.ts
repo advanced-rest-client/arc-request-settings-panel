@@ -98,6 +98,7 @@ declare namespace UiElements {
     _certsChanged(value: any): void;
     _nativeTransportChanged(value: any): void;
     _sysVarsChanged(value: any): void;
+    _settingsChanged(key: any, value: any): void;
   }
 }
 
