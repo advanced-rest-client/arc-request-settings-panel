@@ -147,7 +147,7 @@
       ['validateCertificates', true],
       ['nativeTransport', true],
       ['systemVariables', true],
-      ['requestTimeout', 10]
+      ['requestDefaultTimeout', 10]
     ].forEach((item) => {
       test(`Updates value for ${item[0]}`, function() {
         fire(item[0], item[1]);

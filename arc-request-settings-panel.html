@@ -78,7 +78,7 @@ the License.
               <div>
                 Request timeout
               </div>
-              <div secondary>[[_computeTimeoutLabel(requestTimeout)]]</div>
+              <div secondary>[[_computeTimeoutLabel(requestDefaultTimeout)]]</div>
             </paper-item-body>
             <iron-icon icon="arc:arrow-drop-down" class="nav-away-icon" item-icon></iron-icon>
           </paper-item>
@@ -145,7 +145,7 @@ the License.
             <paper-item-body>
               <div>Request timeout</div>
             </paper-item-body>
-            <paper-input no-label-float min="0" type="number" value="{{requestTimeout}}"  placeholder="Timeout" pattern="[0-9]*" error-message="Enter time as a number">=
+            <paper-input no-label-float min="0" type="number" value="{{requestDefaultTimeout}}"  placeholder="Timeout" pattern="[0-9]*" error-message="Enter time as a number">=
               <div slot="suffix">seconds</div>
             </paper-input>
           </paper-item>
@@ -199,7 +199,7 @@ the License.
         /**
          * Sequest default timeout setting.
          */
-        requestTimeout: {
+        requestDefaultTimeout: {
           type: Number,
           notify: true,
           observer: '_timeoutChanged'
@@ -255,9 +255,9 @@ the License.
       return variablesEnabled > 0 ? 'Enabled' : 'Disabled';
     }
 
-    _computeTimeoutLabel(requestTimeout) {
-      if (requestTimeout > 0) {
-        return `Timeout request after ${requestTimeout} seconds`;
+    _computeTimeoutLabel(requestDefaultTimeout) {
+      if (requestDefaultTimeout > 0) {
+        return `Timeout request after ${requestDefaultTimeout} seconds`;
       }
       return 'No timeout';
     }
@@ -280,10 +280,10 @@ the License.
       } else {
         values.followRedirects = this._boolValue(values.followRedirects);
       }
-      if (typeof values.requestTimeout === 'undefined') {
-        values.requestTimeout = 45;
+      if (typeof values.requestDefaultTimeout === 'undefined') {
+        values.requestDefaultTimeout = 45;
       } else {
-        values.requestTimeout = this._numValue(values.requestTimeout);
+        values.requestDefaultTimeout = this._numValue(values.requestDefaultTimeout);
       }
       if (typeof values.validateCertificates === 'undefined') {
         values.validateCertificates = false;
@@ -307,7 +307,7 @@ the License.
       this.__settingsRestored = false;
       this.variablesEnabled = values.variablesEnabled;
       this.followRedirects = values.followRedirects;
-      this.requestTimeout = values.requestTimeout;
+      this.requestDefaultTimeout = values.requestDefaultTimeout;
       this.validateCertificates = values.validateCertificates;
       this.nativeTransport = values.nativeTransport;
       this.systemVariables = values.systemVariables;
@@ -319,7 +319,7 @@ the License.
     }
 
     _timeoutChanged(value) {
-      this.updateSetting('requestTimeout', value);
+      this.updateSetting('requestDefaultTimeout', value);
     }
 
     _redirectsChanged(value) {
@@ -342,7 +342,7 @@ the License.
       this.__settingsRestored = false;
       switch (key) {
         case 'variablesEnabled':
-        case 'requestTimeout':
+        case 'requestDefaultTimeout':
         case 'followRedirects':
         case 'validateCertificates':
         case 'nativeTransport':

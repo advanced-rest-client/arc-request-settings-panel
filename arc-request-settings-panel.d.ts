@@ -53,7 +53,7 @@ declare namespace UiElements {
     /**
      * Sequest default timeout setting.
      */
-    requestTimeout: number|null|undefined;
+    requestDefaultTimeout: number|null|undefined;
 
     /**
      * Global option to follow redirects
@@ -91,7 +91,7 @@ declare namespace UiElements {
     _processValues(values: any): any;
     _setSettings(values: any): void;
     _computeVariablesLabel(variablesEnabled: any): any;
-    _computeTimeoutLabel(requestTimeout: any): any;
+    _computeTimeoutLabel(requestDefaultTimeout: any): any;
     _varsChanged(value: any): void;
     _timeoutChanged(value: any): void;
     _redirectsChanged(value: any): void;

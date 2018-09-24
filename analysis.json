@@ -125,7 +125,7 @@
           }
         },
         {
-          "name": "requestTimeout",
+          "name": "requestDefaultTimeout",
           "type": "number | null | undefined",
           "description": "Sequest default timeout setting.",
           "privacy": "public",
@@ -732,7 +732,7 @@
           "metadata": {},
           "params": [
             {
-              "name": "requestTimeout"
+              "name": "requestDefaultTimeout"
             }
           ]
         },
@@ -1001,7 +1001,7 @@
           "type": "boolean | null | undefined"
         },
         {
-          "name": "request-timeout",
+          "name": "request-default-timeout",
           "description": "Sequest default timeout setting.",
           "sourceRange": {
             "start": {
@@ -1122,8 +1122,8 @@
         },
         {
           "type": "CustomEvent",
-          "name": "request-timeout-changed",
-          "description": "Fired when the `requestTimeout` property changes.",
+          "name": "request-default-timeout-changed",
+          "description": "Fired when the `requestDefaultTimeout` property changes.",
           "metadata": {}
         },
         {
