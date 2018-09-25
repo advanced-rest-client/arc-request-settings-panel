@@ -23,55 +23,23 @@ the License.
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-styles/shadow.html">
 <link rel="import" href="../arc-settings-panel-mixin/arc-settings-panel-mixin.html">
+<link rel="import" href="../arc-settings-panel-mixin/arc-settings-panel-styles.html">
 <dom-module id="arc-request-settings-panel">
   <template>
-    <style>
+    <style include="arc-settings-panel-styles">
     :host {
       display: block;
       @apply --arc-request-settings-panel;
     }
 
-    h2 {
-      @apply --arc-font-subhead;
-      @apply --layout-horizontal;
-      @apply --layout-center;
-      color: var(--arc-settings-panel-header-color);
-      @apply --arc-settings-panel-header;
-    }
-
-    iron-icon {
-      color: var(--arc-settings-panel-icon-color, rgba(0, 0, 0, 0.34));
-      width: 24px;
-      height: 24px;
-    }
-
-    .nav-away-icon {
-      transform: rotate(-90deg);
-    }
-
-    .clickable {
-      cursor: pointer;
-    }
-
     p {
-      @apply --arc-font-body1;
-      color: var(--arc-settings-panel-description-color, rgba(0,0,0,0.74));
       margin: 16px;
-      padding-bottom: 16px;
-      margin-bottom: 0;
-      -webkit-user-select: text;
       @apply --arc-settings-panel-description;
-    }
-
-    .card {
-      padding: 12px;
-      border-radius: 4px;
-      @apply --shadow-elevation-4dp;
     }
     </style>
     <iron-pages selected="{{page}}">
       <section>
-        <h2>Request behavior</h2>
+        <h2 class="panel-title">Request behavior</h2>
         <div class="card">
           <paper-item data-page="1" on-click="_showPage" class="clickable">
             <paper-item-body two-line>
@@ -80,7 +48,7 @@ the License.
               </div>
               <div secondary>[[_computeTimeoutLabel(requestDefaultTimeout)]]</div>
             </paper-item-body>
-            <iron-icon icon="arc:arrow-drop-down" class="nav-away-icon" item-icon></iron-icon>
+            <iron-icon icon="arc:arrow-drop-down" class="panel-icon nav-away-icon" item-icon></iron-icon>
           </paper-item>
 
           <paper-item class="clickable" on-click="_toggleOption">
@@ -136,7 +104,7 @@ the License.
       </section>
 
       <section>
-        <h2>
+        <h2 class="panel-title">
           <paper-icon-button icon="arc:arrow-back" on-click="back"></paper-icon-button>
           Timeout settings
         </h2>
