@@ -108,11 +108,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 193,
+              "line": 161,
               "column": 8
             },
             "end": {
-              "line": 197,
+              "line": 165,
               "column": 9
             }
           },
@@ -131,11 +131,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 201,
+              "line": 169,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 173,
               "column": 9
             }
           },
@@ -154,11 +154,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 209,
+              "line": 177,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 181,
               "column": 9
             }
           },
@@ -177,11 +177,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 218,
+              "line": 186,
               "column": 8
             },
             "end": {
-              "line": 222,
+              "line": 190,
               "column": 9
             }
           },
@@ -200,11 +200,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 226,
+              "line": 194,
               "column": 8
             },
             "end": {
-              "line": 230,
+              "line": 198,
               "column": 9
             }
           },
@@ -223,11 +223,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 235,
+              "line": 203,
               "column": 8
             },
             "end": {
-              "line": 235,
+              "line": 203,
               "column": 28
             }
           },
@@ -244,11 +244,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 240,
+              "line": 208,
               "column": 8
             },
             "end": {
-              "line": 244,
+              "line": 212,
               "column": 9
             }
           },
@@ -267,11 +267,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 249,
+              "line": 217,
               "column": 8
             },
             "end": {
-              "line": 249,
+              "line": 217,
               "column": 40
             }
           },
@@ -289,11 +289,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 264,
+              "line": 232,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 237,
               "column": 5
             }
           },
@@ -376,11 +376,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 271,
+              "line": 239,
               "column": 4
             },
             "end": {
-              "line": 303,
+              "line": 271,
               "column": 5
             }
           },
@@ -397,11 +397,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 305,
+              "line": 273,
               "column": 4
             },
             "end": {
-              "line": 314,
+              "line": 282,
               "column": 5
             }
           },
@@ -700,11 +700,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 253,
+              "line": 221,
               "column": 4
             },
             "end": {
-              "line": 255,
+              "line": 223,
               "column": 5
             }
           },
@@ -721,11 +721,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 257,
+              "line": 225,
               "column": 4
             },
             "end": {
-              "line": 262,
+              "line": 230,
               "column": 5
             }
           },
@@ -742,11 +742,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 316,
+              "line": 284,
               "column": 4
             },
             "end": {
-              "line": 318,
+              "line": 286,
               "column": 5
             }
           },
@@ -766,11 +766,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 320,
+              "line": 288,
               "column": 4
             },
             "end": {
-              "line": 322,
+              "line": 290,
               "column": 5
             }
           },
@@ -790,11 +790,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 324,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 326,
+              "line": 294,
               "column": 5
             }
           },
@@ -814,11 +814,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 328,
+              "line": 296,
               "column": 4
             },
             "end": {
-              "line": 330,
+              "line": 298,
               "column": 5
             }
           },
@@ -838,11 +838,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 332,
+              "line": 300,
               "column": 4
             },
             "end": {
-              "line": 334,
+              "line": 302,
               "column": 5
             }
           },
@@ -862,11 +862,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 336,
+              "line": 304,
               "column": 4
             },
             "end": {
-              "line": 338,
+              "line": 306,
               "column": 5
             }
           },
@@ -886,11 +886,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 340,
+              "line": 308,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 321,
               "column": 5
             }
           },
@@ -918,11 +918,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 186,
+          "line": 154,
           "column": 2
         },
         "end": {
-          "line": 354,
+          "line": 322,
           "column": 3
         }
       },
@@ -989,11 +989,11 @@
           "description": "Variables support enabled setting.",
           "sourceRange": {
             "start": {
-              "line": 193,
+              "line": 161,
               "column": 8
             },
             "end": {
-              "line": 197,
+              "line": 165,
               "column": 9
             }
           },
@@ -1005,11 +1005,11 @@
           "description": "Sequest default timeout setting.",
           "sourceRange": {
             "start": {
-              "line": 201,
+              "line": 169,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 173,
               "column": 9
             }
           },
@@ -1021,11 +1021,11 @@
           "description": "Global option to follow redirects",
           "sourceRange": {
             "start": {
-              "line": 209,
+              "line": 177,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 181,
               "column": 9
             }
           },
@@ -1037,11 +1037,11 @@
           "description": "Setting to validate certificates when making a request.",
           "sourceRange": {
             "start": {
-              "line": 218,
+              "line": 186,
               "column": 8
             },
             "end": {
-              "line": 222,
+              "line": 190,
               "column": 9
             }
           },
@@ -1053,11 +1053,11 @@
           "description": "Enables platform's native HTTP transport.",
           "sourceRange": {
             "start": {
-              "line": 226,
+              "line": 194,
               "column": 8
             },
             "end": {
-              "line": 230,
+              "line": 198,
               "column": 9
             }
           },
@@ -1069,11 +1069,11 @@
           "description": "When set `validateCertificates` options is disabled.\nChrome apps does not have this option.",
           "sourceRange": {
             "start": {
-              "line": 235,
+              "line": 203,
               "column": 8
             },
             "end": {
-              "line": 235,
+              "line": 203,
               "column": 28
             }
           },
@@ -1085,11 +1085,11 @@
           "description": "Collects information abour system variables when evaluating\nrequest.",
           "sourceRange": {
             "start": {
-              "line": 240,
+              "line": 208,
               "column": 8
             },
             "end": {
-              "line": 244,
+              "line": 212,
               "column": 9
             }
           },
@@ -1101,11 +1101,11 @@
           "description": "When set `systemVariables` options is disabled.\nChrome apps does not have this option.",
           "sourceRange": {
             "start": {
-              "line": 249,
+              "line": 217,
               "column": 8
             },
             "end": {
-              "line": 249,
+              "line": 217,
               "column": 40
             }
           },
