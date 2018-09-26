@@ -80,26 +80,6 @@ the License.
             </paper-item-body>
             <paper-toggle-button tabindex="-1" checked="{{followRedirects}}" on-click="_cancelEvent"></paper-toggle-button>
           </paper-item>
-
-          <paper-item class="clickable" disabled$="[[sslDisabled]]" on-click="_toggleOption">
-            <paper-item-body two-line>
-              <div>
-                Validate SSL certificates
-              </div>
-              <div secondary>Validate certificate when making a request</div>
-            </paper-item-body>
-            <paper-toggle-button tabindex="-1" disabled="[[sslDisabled]]" checked="{{validateCertificates}}" on-click="_cancelEvent"></paper-toggle-button>
-          </paper-item>
-
-          <paper-item class="clickable" on-click="_toggleOption">
-            <paper-item-body two-line>
-              <div>
-                Native request
-              </div>
-              <div secondary>Use platform's native HTTP transport instead of ARC's</div>
-            </paper-item-body>
-            <paper-toggle-button tabindex="-1" checked="{{nativeTransport}}" on-click="_cancelEvent"></paper-toggle-button>
-          </paper-item>
         </div>
       </section>
 
@@ -181,28 +161,6 @@ the License.
           observer: '_redirectsChanged'
         },
         /**
-         * Setting to validate certificates when making a request.
-         * @type {Object}
-         */
-        validateCertificates: {
-          type: Boolean,
-          notify: true,
-          observer: '_certsChanged'
-        },
-        /**
-         * Enables platform's native HTTP transport.
-         */
-        nativeTransport: {
-          type: Boolean,
-          notify: true,
-          observer: '_nativeTransportChanged'
-        },
-        /**
-         * When set `validateCertificates` options is disabled.
-         * Chrome apps does not have this option.
-         */
-        sslDisabled: Boolean,
-        /**
          * Collects information abour system variables when evaluating
          * request.
          */
@@ -253,16 +211,6 @@ the License.
       } else {
         values.requestDefaultTimeout = this._numValue(values.requestDefaultTimeout);
       }
-      if (typeof values.validateCertificates === 'undefined') {
-        values.validateCertificates = false;
-      } else {
-        values.validateCertificates = this._boolValue(values.validateCertificates);
-      }
-      if (typeof values.nativeTransport === 'undefined') {
-        values.nativeTransport = false;
-      } else {
-        values.nativeTransport = this._boolValue(values.nativeTransport);
-      }
       if (typeof values.systemVariables === 'undefined') {
         values.systemVariables = true;
       } else {
@@ -276,8 +224,6 @@ the License.
       this.variablesEnabled = values.variablesEnabled;
       this.followRedirects = values.followRedirects;
       this.requestDefaultTimeout = values.requestDefaultTimeout;
-      this.validateCertificates = values.validateCertificates;
-      this.nativeTransport = values.nativeTransport;
       this.systemVariables = values.systemVariables;
       this.__settingsRestored = true;
     }
@@ -294,14 +240,6 @@ the License.
       this.updateSetting('followRedirects', value);
     }
 
-    _certsChanged(value) {
-      this.updateSetting('validateCertificates', value);
-    }
-
-    _nativeTransportChanged(value) {
-      this.updateSetting('nativeTransport', value);
-    }
-
     _sysVarsChanged(value) {
       this.updateSetting('systemVariables', value);
     }
@@ -312,8 +250,6 @@ the License.
         case 'variablesEnabled':
         case 'requestDefaultTimeout':
         case 'followRedirects':
-        case 'validateCertificates':
-        case 'nativeTransport':
         case 'systemVariables':
           this[key] = value;
           break;

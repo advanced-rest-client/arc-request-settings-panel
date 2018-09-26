@@ -31,12 +31,6 @@
     </template>
   </test-fixture>
 
-  <test-fixture id="SslDisabled">
-    <template>
-      <arc-request-settings-panel ssl-disabled manual></arc-request-settings-panel>
-    </template>
-  </test-fixture>
-
   <script>
   suite('arc-request-settings-panel', () => {
     let element;
@@ -54,9 +48,7 @@
     [
       ['local variables', 1, 'variablesEnabled'],
       ['system variables', 2, 'systemVariables'],
-      ['redirects', 3, 'followRedirects'],
-      ['SSL validation', 4, 'validateCertificates'],
-      ['native request', 5, 'nativeTransport']
+      ['redirects', 3, 'followRedirects']
     ].forEach((item) => {
       test(`Toggles ${item[0]}`, function() {
         const node = element.shadowRoot.querySelectorAll('paper-item')[item[1]];
@@ -73,16 +65,6 @@
         const node = element.shadowRoot.querySelectorAll('paper-item')[2];
         MockInteractions.tap(node);
         assert.isFalse(element.systemVariables);
-        done();
-      });
-    });
-
-    test('Ignores input on disabled ssl certificates', (done) => {
-      const element = fixture('SslDisabled');
-      flush(() => {
-        const node = element.shadowRoot.querySelectorAll('paper-item')[4];
-        MockInteractions.tap(node);
-        assert.isFalse(element.validateCertificates);
         done();
       });
     });
@@ -144,8 +126,6 @@
     [
       ['variablesEnabled', true],
       ['followRedirects', true],
-      ['validateCertificates', true],
-      ['nativeTransport', true],
       ['systemVariables', true],
       ['requestDefaultTimeout', 10]
     ].forEach((item) => {
