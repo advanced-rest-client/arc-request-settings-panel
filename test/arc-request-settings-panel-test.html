@@ -32,6 +32,7 @@
   </test-fixture>
 
   <script>
+  /* global MockInteractions */
   suite('arc-request-settings-panel', () => {
     let element;
     setup((done) => {
@@ -46,8 +47,8 @@
     });
 
     [
-      ['local variables', 1, 'variablesEnabled'],
-      ['system variables', 2, 'systemVariables'],
+      ['local variables', 1, 'appVariablesEnabled'],
+      ['system variables', 2, 'systemVariablesEnabled'],
       ['redirects', 3, 'followRedirects']
     ].forEach((item) => {
       test(`Toggles ${item[0]}`, function() {
@@ -64,7 +65,7 @@
       flush(() => {
         const node = element.shadowRoot.querySelectorAll('paper-item')[2];
         MockInteractions.tap(node);
-        assert.isFalse(element.systemVariables);
+        assert.isFalse(element.systemVariablesEnabled);
         done();
       });
     });
@@ -124,9 +125,9 @@
       document.body.dispatchEvent(ev);
     }
     [
-      ['variablesEnabled', true],
+      ['appVariablesEnabled', true],
       ['followRedirects', true],
-      ['systemVariables', true],
+      ['systemVariablesEnabled', true],
       ['requestDefaultTimeout', 10]
     ].forEach((item) => {
       test(`Updates value for ${item[0]}`, function() {
