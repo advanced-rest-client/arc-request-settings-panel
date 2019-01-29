@@ -1,6 +1,6 @@
 <!--
 @license
-Copyright 2016 The Advanced REST client authors <arc@mulesoft.com>
+Copyright 2018 The Advanced REST client authors <arc@mulesoft.com>
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
 the License at
@@ -11,122 +11,90 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 -->
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../paper-item/paper-item.html">
 <link rel="import" href="../paper-item/paper-item-body.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
-<link rel="import" href="../variables-editor/variables-editor.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../arc-icons/arc-icons.html">
 <link rel="import" href="../iron-pages/iron-pages.html">
-<!--
-`<arc-request-settings-panel>` A settings panel with request settings
-
-### Example
-```
-<arc-request-settings-panel></arc-request-settings-panel>
-```
-
-### Styling
-`<arc-request-settings-panel>` provides the following custom properties and mixins for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--arc-request-settings-panel` | Mixin applied to the element | `{}`
-`--arc-settings-panel-header` | Mixin applied to settings panel header | `{}`
-`--arc-settings-panel-header-color` | Color of the settings panel header | `--accent-color`
-`--arc-settings-panel-icon-color` | Settings panel icon color | `rgba(0, 0, 0, 0.34)`
-`--arc-settings-panel-description` | Mixin applied to the description elements | `{}`
-`--arc-settings-panel-description-color` | Color of the description paragraphs | `rgba(0,0,0,0.74)`
-`--arc-font-body1` | Mixin apllied to the description elements | `{}`
-`--arc-font-subhead` | Mixin applied to the section headers | `{}`
-
-@group UI Elements
-@element arc-request-settings-panel
-@demo demo/index.html
--->
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../arc-settings-panel-mixin/arc-settings-panel-mixin.html">
+<link rel="import" href="../arc-settings-panel-mixin/arc-settings-panel-styles.html">
 <dom-module id="arc-request-settings-panel">
   <template>
-    <style>
+    <style include="arc-settings-panel-styles">
     :host {
       display: block;
+      @apply --arc-font-body1;
       @apply --arc-request-settings-panel;
     }
 
-    h2 {
-      @apply --arc-font-subhead;
-      @apply --layout-horizontal;
-      @apply --layout-center;
-      height: 48px;
-      color: var(--arc-settings-panel-header-color, --accent-color);
-      margin: 0;
-      @apply --arc-settings-panel-header;
-    }
-
-    iron-icon {
-      color: var(--arc-settings-panel-icon-color, rgba(0, 0, 0, 0.34));
-      width: 24px;
-      height: 24px;
-    }
-
-    .nav-away-icon {
-      transform: rotate(-90deg);
-    }
-
-    .clickable {
-      cursor: pointer;
-    }
-
     p {
-      @apply --arc-font-body1;
-      color: var(--arc-settings-panel-description-color, rgba(0,0,0,0.74));
-      margin: 16px;
-      padding-bottom: 16px;
-      margin-bottom: 0;
-      -webkit-user-select: text;
       @apply --arc-settings-panel-description;
     }
     </style>
     <iron-pages selected="{{page}}">
       <section>
-        <h2>Request behavior</h2>
-        <paper-material elevation="1">
-          <paper-item data-page="2" on-tap="_showPage" class="clickable">
-            <paper-item-body two-line>
-              <div>
-                Variables
-              </div>
-              <div secondary>[[_computeVariablesLabel(variablesEnabled)]]</div>
-            </paper-item-body>
-            <iron-icon icon="arc:arrow-drop-down" class="nav-away-icon" item-icon></iron-icon>
-          </paper-item>
-          <paper-item data-page="1" on-tap="_showPage" class="clickable">
+        <h2 class="panel-title">Request behavior</h2>
+        <div class="card">
+          <paper-item data-page="1" on-click="_showPage" class="clickable">
             <paper-item-body two-line>
               <div>
                 Request timeout
               </div>
-              <div secondary>[[_computeTimeoutLabel(requestTimeout)]]</div>
+              <div secondary>[[_computeTimeoutLabel(requestDefaultTimeout)]]</div>
             </paper-item-body>
-            <iron-icon icon="arc:arrow-drop-down" class="nav-away-icon" item-icon></iron-icon>
+            <iron-icon icon="arc:arrow-drop-down" class="panel-icon nav-away-icon" item-icon></iron-icon>
           </paper-item>
-        </paper-material>
+
+          <paper-item class="clickable" on-click="_toggleOption">
+            <paper-item-body two-line>
+              <div>
+                Local variables
+              </div>
+              <div secondary>Use application variables when processing request</div>
+            </paper-item-body>
+            <paper-toggle-button tabindex="-1" checked="{{appVariablesEnabled}}" on-click="_cancelEvent"></paper-toggle-button>
+          </paper-item>
+
+          <paper-item class="clickable" on-click="_toggleOption" disabled$="[[systemVariablesDisabled]]">
+            <paper-item-body two-line>
+              <div>
+                System variables
+              </div>
+              <div secondary>Include system variables when processing request</div>
+            </paper-item-body>
+            <paper-toggle-button tabindex="-1" checked="{{systemVariablesEnabled}}" on-click="_cancelEvent" disabled="[[systemVariablesDisabled]]"></paper-toggle-button>
+          </paper-item>
+
+          <paper-item class="clickable" on-click="_toggleOption">
+            <paper-item-body two-line>
+              <div>
+                Follow redirects
+              </div>
+              <div secondary>Automatically follow redirects when making a request</div>
+            </paper-item-body>
+            <paper-toggle-button tabindex="-1" checked="{{followRedirects}}" on-click="_cancelEvent"></paper-toggle-button>
+          </paper-item>
+        </div>
       </section>
 
       <section>
-        <h2>
-          <paper-icon-button icon="arc:arrow-back" on-tap="back"></paper-icon-button>
+        <h2 class="panel-title">
+          <paper-icon-button icon="arc:arrow-back" on-click="back"></paper-icon-button>
           Timeout settings
         </h2>
-        <paper-material elevation="1">
+        <div class="card">
           <paper-item>
             <paper-item-body>
               <div>Request timeout</div>
             </paper-item-body>
-            <paper-input no-label-float type="number" value="{{requestTimeout}}"  placeholder="Timeout" pattern="[0-9]*" error-message="Enter time as a number">=
-              <div suffix>seconds</div>
+            <paper-input no-label-float min="0" step="1" type="number" value="{{requestDefaultTimeout}}"  placeholder="Timeout" pattern="[0-9]*" error-message="Enter time as a number">=
+              <div slot="suffix">seconds</div>
             </paper-input>
           </paper-item>
           <p>
@@ -135,130 +103,169 @@ Custom property | Description | Default
           <p>
             Set the value to positive number to set the time (in seconds) after which the request will timeout.
           </p>
-        </paper-material>
-      </section>
-
-      <section>
-        <h2>
-          <paper-icon-button icon="arc:arrow-back" on-tap="back"></paper-icon-button>
-          Variables
-        </h2>
-        <paper-material elevation="1">
-          <paper-item>
-            <paper-item-body>
-              <div>Variables</div>
-            </paper-item-body>
-            <paper-toggle-button checked="{{variablesEnabled}}"></paper-toggle-button>
-          </paper-item>
-          <p>
-            Variables helps you dynamically alter the request just before sending it to the server. You can place them into the URL, headers list or in the payload.
-          </p>
-          <p>
-            Predefined variables are:
-          </p>
-          <ul>
-            <li><b>${random}</b><br/>Generates random number between 0 and the maximum number in JavaScript and your platform.</li>
-            <li><b>${now}</b><br/>Inserts current time (in miliseconds).</li>
-          </ul>
-          <p>
-            You can also group generated <code>${random}</code> values and reuse them in different places. For example you can use <code>${random:1}</code> in the URL editor and add the same
-            variable to the headers or payload. The same generated number will be inserted in place of the variable at request time.<br/>
-          </p>
-          <p>
-            Basic syntax for variables is:<br/>
-            <code>${random:[group_number]}</code> where the <code>[group_number]</code> is an identifier that you can use to recall the same variable later.
-          </p>
-          <p>
-            Learn more about variables on a blog post: <a href="http://restforchrome.blogspot.co.uk/2012/11/introduce-magic-variables.html" target="_blank">Introducing: Magic Variables</a>
-          </p>
-        </paper-material>
-        <h2>Custom variables</h2>
-        <paper-material elevation="1">
-          <variables-editor></variables-editor>
-        </paper-material>
+        </div>
       </section>
     </iron-pages>
   </template>
   <script>
-  Polymer({
-    is: 'arc-request-settings-panel',
-    properties: {
-      // Currently displayed page of the settings editor
-      page: {
-        type: Number,
-        value: 0,
-        notify: true
-      },
-      /**
-       * Variables support enabled setting.
-       */
-      variablesEnabled: {
-        type: Boolean,
-        notify: true
-      },
-      /**
-       * Sequest default timeout setting.
-       */
-      requestTimeout: {
-        type: Number,
-        notify: true
-      }
-    },
+  /**
+   * Request settings panel for Advanced REST Client
+   *
+   * ## Styling
+   *
+   * `<arc-request-settings-panel>` provides the following custom properties and mixins for styling:
+   *
+   * Custom property | Description | Default
+   * ----------------|-------------|----------
+   * `--arc-request-settings-panel` | Mixin applied to this elment | `{}`
+   * `--arc-settings-panel-header` | Mixin applied to settings panel header | `{}`
+   * `--arc-settings-panel-header-color` | Color of the settings panel header | `--accent-color`
+   * `--arc-settings-panel-icon-color` | Settings panel icon color | `rgba(0, 0, 0, 0.34)`
+   * `--arc-settings-panel-description` | Mixin applied to the description elements | `{}`
+   * `--arc-settings-panel-description-color` | Description color  | `rgba(0,0,0,0.74)`
+   * `--arc-font-body1` | Mixin apllied to the description elements | `{}`
+   * `--arc-font-subhead` | Mixin applied to the section headers | `{}`
+   *
+   * @customElement
+   * @polymer
+   * @demo demo/index.html
+   * @memberof UiElements
+   * @appliesMixin ArcComponents.ArcSettingsPanelMixin
+   */
+  class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polymer.Element) {
+    static get is() {
+      return 'arc-request-settings-panel';
+    }
+    static get properties() {
+      return {
+        /**
+         * Variables support enabled setting.
+         */
+        appVariablesEnabled: {
+          type: Boolean,
+          notify: true,
+          observer: '_varsChanged'
+        },
+        /**
+         * Sequest default timeout setting.
+         */
+        requestDefaultTimeout: {
+          type: Number,
+          notify: true,
+          observer: '_timeoutChanged'
+        },
+        /**
+         * Global option to follow redirects
+         */
+        followRedirects: {
+          type: Boolean,
+          notify: true,
+          observer: '_redirectsChanged'
+        },
+        /**
+         * Collects information abour system variables when evaluating
+         * request.
+         */
+        systemVariablesEnabled: {
+          type: Boolean,
+          notify: true,
+          observer: '_sysVarsChanged'
+        },
+        /**
+         * When set `systemVariablesEnabled` options is disabled.
+         * Chrome apps does not have this option.
+         */
+        systemVariablesDisabled: Boolean
+      };
+    }
 
-    _computeVariablesLabel: function(variablesEnabled) {
-      return variablesEnabled > 0 ? 'Enabled'  : 'Disabled';
-    },
+    _computeVariablesLabel(variablesEnabled) {
+      return variablesEnabled > 0 ? 'Enabled' : 'Disabled';
+    }
 
-    _computeTimeoutLabel: function(requestTimeout) {
-      if (requestTimeout > 0) {
-        return `Timeout request after ${requestTimeout} seconds`;
+    _computeTimeoutLabel(requestDefaultTimeout) {
+      if (requestDefaultTimeout > 0) {
+        return `Timeout request after ${requestDefaultTimeout} seconds`;
       }
       return 'No timeout';
-    },
+    }
 
-    // Shows internal sub-page
-    _showPage: function(e) {
-      var target;
-      var nodeName = 'PAPER-ITEM';
-      switch (nodeName) {
-        case e.target.nodeName: target = e.target; break;
-        case e.currentTarget.nodeName: target = e.currentTarget; break;
-        default:
-          if (e.originalTarget && e.originalTarget.nodeName === nodeName) {
-            target = e.originalTarget;
-          }
+    connectedCallback() {
+      super.connectedCallback();
+      if (this.page === undefined) {
+        this.page = 0;
       }
-      if (!target && e.path) {
-        var path = e.path;
-        while (true) {
-          let _elm = path.shift();
-          if (!_elm) {
-            throw new Error('paper-item not found in path');
-          }
-          if (_elm.nodeName === 'PAPER-ITEM') {
-            target = _elm;
+    }
 
-            break;
-          }
+    _processValues(values) {
+      if (typeof values.appVariablesEnabled === 'undefined') {
+        if (typeof values.variablesEnabled !== 'undefined') {
+          values.appVariablesEnabled = this._boolValue(values.variablesEnabled);
+        } else {
+          values.appVariablesEnabled = true;
+        }
+      } else {
+        values.appVariablesEnabled = this._boolValue(values.appVariablesEnabled);
+      }
+      if (typeof values.followRedirects === 'undefined') {
+        values.followRedirects = true;
+      } else {
+        values.followRedirects = this._boolValue(values.followRedirects);
+      }
+      if (typeof values.requestDefaultTimeout === 'undefined') {
+        values.requestDefaultTimeout = 45;
+      } else {
+        values.requestDefaultTimeout = this._numValue(values.requestDefaultTimeout);
+        if (values.requestDefaultTimeout > 1000) {
+          values.requestDefaultTimeout = Math.round(values.requestDefaultTimeout/1000);
         }
       }
-      if (!target) {
-        throw new Error('Event target not found.');
+      if (typeof values.systemVariablesEnabled === 'undefined') {
+        values.systemVariablesEnabled = true;
+      } else {
+        values.systemVariablesEnabled = this._boolValue(values.systemVariablesEnabled);
       }
-      var page = target.dataset.page;
-      if (!page) {
-        throw new Error('Event target does not contain page information.');
-      }
-      page = Number(page);
-      if (page !== page) {
-        throw new Error('Page is not a number');
-      }
-      this.page = page;
-    },
-    // restores the main page of the editor.
-    back: function() {
-      this.page = 0;
+      return values;
     }
-  });
+
+    _setSettings(values) {
+      this.__settingsRestored = false;
+      this.appVariablesEnabled = values.appVariablesEnabled;
+      this.followRedirects = values.followRedirects;
+      this.requestDefaultTimeout = values.requestDefaultTimeout;
+      this.systemVariablesEnabled = values.systemVariablesEnabled;
+      this.__settingsRestored = true;
+    }
+
+    _varsChanged(value) {
+      this.updateSetting('appVariablesEnabled', value);
+    }
+
+    _timeoutChanged(value) {
+      this.updateSetting('requestDefaultTimeout', value);
+    }
+
+    _redirectsChanged(value) {
+      this.updateSetting('followRedirects', value);
+    }
+
+    _sysVarsChanged(value) {
+      this.updateSetting('systemVariablesEnabled', value);
+    }
+
+    _settingsChanged(key, value) {
+      this.__settingsRestored = false;
+      switch (key) {
+        case 'appVariablesEnabled':
+        case 'systemVariablesEnabled':
+        case 'requestDefaultTimeout':
+        case 'followRedirects':
+          this[key] = value;
+          break;
+      }
+      this.__settingsRestored = true;
+    }
+  }
+  window.customElements.define(ArcRequestSettingsPanel.is, ArcRequestSettingsPanel);
   </script>
 </dom-module>
