@@ -136,6 +136,63 @@
       });
     });
   });
+
+  suite('_processValues()', () => {
+    let element;
+    setup(() => {
+      element = fixture('Manual');
+    });
+    [
+      ['appVariablesEnabled', undefined, true],
+      ['appVariablesEnabled', true, true],
+      ['appVariablesEnabled', false, false],
+      ['appVariablesEnabled', 'false', false],
+      ['followRedirects', undefined, true],
+      ['followRedirects', true, true],
+      ['followRedirects', false, false],
+      ['followRedirects', 'false', false],
+      ['requestDefaultTimeout', undefined, 45],
+      ['requestDefaultTimeout', 100, 100],
+      ['requestDefaultTimeout', '120', 120],
+      ['requestDefaultTimeout', '1200', 1],
+      ['systemVariablesEnabled', undefined, true],
+      ['systemVariablesEnabled', true, true],
+      ['systemVariablesEnabled', false, false],
+      ['systemVariablesEnabled', 'false', false]
+    ].forEach((item) => {
+      test(`Sets value of ${item[0]} when ${item[1]}`, () => {
+        const values = {};
+        values[item[0]] = item[1];
+        element._processValues(values);
+        assert.equal(values[item[0]], item[2]);
+      });
+    });
+  });
+
+  suite('_setSettings()', () => {
+    let element;
+    setup(() => {
+      element = fixture('Manual');
+    });
+
+    [
+      ['appVariablesEnabled', true],
+      ['followRedirects', true],
+      ['requestDefaultTimeout', true],
+      ['systemVariablesEnabled', true],
+      ['appVariablesEnabled', false],
+      ['followRedirects', false],
+      ['requestDefaultTimeout', false],
+      ['systemVariablesEnabled', false]
+    ].forEach((item) => {
+      test(`Sets value of ${item[0]}`, () => {
+        const values = {};
+        values[item[0]] = item[1];
+        element._setSettings(values);
+        assert.equal(element[item[0]], item[1]);
+      });
+    });
+  });
   </script>
 </body>
 </html>
