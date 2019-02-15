@@ -219,10 +219,6 @@ the License.
       };
     }
 
-    _computeVariablesLabel(variablesEnabled) {
-      return variablesEnabled > 0 ? 'Enabled' : 'Disabled';
-    }
-
     _computeTimeoutLabel(requestDefaultTimeout) {
       if (requestDefaultTimeout > 0) {
         return `Timeout request after ${requestDefaultTimeout} seconds`;
