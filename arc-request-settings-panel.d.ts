@@ -76,16 +76,32 @@ declare namespace UiElements {
      * Chrome apps does not have this option.
      */
     systemVariablesDisabled: boolean|null|undefined;
+
+    /**
+     * Default OAuth 2 redirect URI.
+     */
+    oauth2redirectUri: object|null;
+
+    /**
+     * The default value for the OAuth2 redirect URI if missing.
+     */
+    defaultOauth2RedirectUri: string|null|undefined;
     connectedCallback(): void;
     _processValues(values: any): any;
     _setSettings(values: any): void;
-    _computeVariablesLabel(variablesEnabled: any): any;
     _computeTimeoutLabel(requestDefaultTimeout: any): any;
     _varsChanged(value: any): void;
     _timeoutChanged(value: any): void;
     _redirectsChanged(value: any): void;
     _sysVarsChanged(value: any): void;
+    _oauth2RedirectChanged(value: any): void;
     _settingsChanged(key: any, value: any): void;
+
+    /**
+     * Handles `change` event on OAuth2 redirect URI input.
+     * Updates the value of corresponding `oauth2redirectUri` property.
+     */
+    _updateOAuthRedirect(e: Event|null): void;
   }
 }
 
