@@ -36,6 +36,8 @@
   suite('arc-request-settings-panel', () => {
     let element;
     setup((done) => {
+      const prefs = document.querySelector('arc-local-store-preferences');
+      prefs.clear();
       element = fixture('Manual');
       flush(() => done());
     });
@@ -46,10 +48,16 @@
       assert.equal(element.page, 1);
     });
 
+    test('Shows OAuth2 redirect settings page', function() {
+      const node = element.shadowRoot.querySelector('paper-item[data-page="2"]');
+      MockInteractions.tap(node);
+      assert.equal(element.page, 2);
+    });
+
     [
-      ['local variables', 1, 'appVariablesEnabled'],
-      ['system variables', 2, 'systemVariablesEnabled'],
-      ['redirects', 3, 'followRedirects']
+      ['local variables', 2, 'appVariablesEnabled'],
+      ['system variables', 3, 'systemVariablesEnabled'],
+      ['redirects', 4, 'followRedirects']
     ].forEach((item) => {
       test(`Toggles ${item[0]}`, function() {
         const node = element.shadowRoot.querySelectorAll('paper-item')[item[1]];
@@ -72,7 +80,7 @@
   });
 
   suite('Auto reading settings', () => {
-    let element;
+    let element;https://domain.com
     setup(() => {
       const node = document.querySelector('arc-local-store-preferences');
       node.clear();
@@ -158,7 +166,9 @@
       ['systemVariablesEnabled', undefined, true],
       ['systemVariablesEnabled', true, true],
       ['systemVariablesEnabled', false, false],
-      ['systemVariablesEnabled', 'false', false]
+      ['systemVariablesEnabled', 'false', false],
+      ['oauth2redirectUri', undefined, 'https://auth.advancedrestclient.com/oauth-popup.html'],
+      ['oauth2redirectUri', 'https://auth.domain.com', 'https://auth.domain.com']
     ].forEach((item) => {
       test(`Sets value of ${item[0]} when ${item[1]}`, () => {
         const values = {};
@@ -183,7 +193,8 @@
       ['appVariablesEnabled', false],
       ['followRedirects', false],
       ['requestDefaultTimeout', false],
-      ['systemVariablesEnabled', false]
+      ['systemVariablesEnabled', false],
+      ['oauth2redirectUri', 'https://auth.domain.com']
     ].forEach((item) => {
       test(`Sets value of ${item[0]}`, () => {
         const values = {};
@@ -191,6 +202,31 @@
         element._setSettings(values);
         assert.equal(element[item[0]], item[1]);
       });
+    });
+  });
+
+  suite('_updateOAuthRedirect()', () => {
+    let element;
+    setup(() => {
+      const prefs = document.querySelector('arc-local-store-preferences');
+      prefs.clear();
+      element = fixture('Manual');
+    });
+
+    test('Calls updateSetting() with arguments', () => {
+      const input = element.shadowRoot.querySelector('.oauth2-redirect');
+      input.value = 'https://domain.com';
+      const spy = sinon.spy(element, 'updateSetting');
+      input.dispatchEvent(new Event('change'));
+      assert.equal(spy.args[0][0], 'oauth2redirectUri');
+      assert.equal(spy.args[0][1], 'https://domain.com');
+    });
+
+    test('Won\'t call updateSetting() when no value', () => {
+      const input = element.shadowRoot.querySelector('.oauth2-redirect');
+      const spy = sinon.spy(element, 'updateSetting');
+      input.dispatchEvent(new Event('change'));
+      assert.isFalse(spy.called);
     });
   });
   </script>
