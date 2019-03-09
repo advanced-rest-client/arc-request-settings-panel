@@ -4,11 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
   <title>arc-request-settings-panel test</title>
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-  <script src="../../../wct-browser-legacy/browser.js"></script>
-  <script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
-  <script type="module" src="../../../arc-local-store-preferences/arc-local-store-preferences.js"></script>
-  <script type="module" src="../arc-request-settings-panel.js"></script>
+
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
+  <script src="../node_modules/wct-mocha/wct-mocha.js"></script>
+  <script src="../node_modules/sinon/pkg/sinon.js"></script>
+
 </head>
 <body>
   <arc-local-store-preferences></arc-local-store-preferences>
@@ -32,9 +35,9 @@
   </test-fixture>
 
   <script type="module">
-  import '../../../arc-local-store-preferences/arc-local-store-preferences.js';
+  import '../../../@advanced-rest-client/arc-local-store-preferences/arc-local-store-preferences.js';
   import '../arc-request-settings-panel.js';
-  /* global MockInteractions */
+  import {tap} from '../../../@polymer/iron-test-helpers/mock-interactions.js';
   suite('arc-request-settings-panel', () => {
     let element;
     setup((done) => {
@@ -46,13 +49,13 @@
 
     test('Shows timeout settings page', function() {
       const node = element.shadowRoot.querySelector('paper-item[data-page="1"]');
-      MockInteractions.tap(node);
+      tap(node);
       assert.equal(element.page, 1);
     });
 
     test('Shows OAuth2 redirect settings page', function() {
       const node = element.shadowRoot.querySelector('paper-item[data-page="2"]');
-      MockInteractions.tap(node);
+      tap(node);
       assert.equal(element.page, 2);
     });
 
@@ -63,7 +66,7 @@
     ].forEach((item) => {
       test(`Toggles ${item[0]}`, function() {
         const node = element.shadowRoot.querySelectorAll('paper-item')[item[1]];
-        MockInteractions.tap(node);
+        tap(node);
         assert.isTrue(element[item[2]]);
       });
     });
@@ -74,7 +77,7 @@
       const element = fixture('SysVarDisabled');
       flush(() => {
         const node = element.shadowRoot.querySelectorAll('paper-item')[2];
-        MockInteractions.tap(node);
+        tap(node);
         assert.isFalse(element.systemVariablesEnabled);
         done();
       });
@@ -82,7 +85,7 @@
   });
 
   suite('Auto reading settings', () => {
-    let element;https://domain.com
+    let element;
     setup(() => {
       const node = document.querySelector('arc-local-store-preferences');
       node.clear();

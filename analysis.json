@@ -4,7 +4,7 @@
     {
       "description": "Request settings panel for Advanced REST Client\n\n## Styling\n\n`<arc-request-settings-panel>` provides the following custom properties and mixins for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--arc-request-settings-panel` | Mixin applied to this elment | `{}`\n`--arc-settings-panel-header` | Mixin applied to settings panel header | `{}`\n`--arc-settings-panel-header-color` | Color of the settings panel header | `--accent-color`\n`--arc-settings-panel-icon-color` | Settings panel icon color | `rgba(0, 0, 0, 0.34)`\n`--arc-settings-panel-description` | Mixin applied to the description elements | `{}`\n`--arc-settings-panel-description-color` | Description color  | `rgba(0,0,0,0.74)`\n`--arc-font-body1` | Mixin apllied to the description elements | `{}`\n`--arc-font-subhead` | Mixin applied to the section headers | `{}`",
       "summary": "",
-      "path": "arc-request-settings-panel.html",
+      "path": "arc-request-settings-panel.js",
       "properties": [
         {
           "name": "manual",
@@ -12,13 +12,13 @@
           "description": "When set the element will not request current settings state and\nwill wait until it's properties are set.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 99,
+              "line": 90,
               "column": 8
             },
             "end": {
-              "line": 99,
+              "line": 90,
               "column": 23
             }
           },
@@ -35,13 +35,13 @@
           "description": "When set the settings are baing loaded.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 103,
+              "line": 94,
               "column": 8
             },
             "end": {
-              "line": 103,
+              "line": 94,
               "column": 62
             }
           },
@@ -60,13 +60,13 @@
           "description": "Some panels have sub pages. This tracks selected page.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 107,
+              "line": 98,
               "column": 8
             },
             "end": {
-              "line": 107,
+              "line": 98,
               "column": 20
             }
           },
@@ -83,13 +83,13 @@
           "description": "",
           "privacy": "private",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 108,
+              "line": 99,
               "column": 8
             },
             "end": {
-              "line": 108,
+              "line": 99,
               "column": 57
             }
           },
@@ -108,12 +108,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 167,
-              "column": 8
+              "line": 194,
+              "column": 6
             },
             "end": {
-              "line": 171,
-              "column": 9
+              "line": 198,
+              "column": 7
             }
           },
           "metadata": {
@@ -131,12 +131,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 175,
-              "column": 8
+              "line": 202,
+              "column": 6
             },
             "end": {
-              "line": 179,
-              "column": 9
+              "line": 206,
+              "column": 7
             }
           },
           "metadata": {
@@ -154,12 +154,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 183,
-              "column": 8
+              "line": 210,
+              "column": 6
             },
             "end": {
-              "line": 187,
-              "column": 9
+              "line": 214,
+              "column": 7
             }
           },
           "metadata": {
@@ -177,12 +177,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 192,
-              "column": 8
+              "line": 219,
+              "column": 6
             },
             "end": {
-              "line": 196,
-              "column": 9
+              "line": 223,
+              "column": 7
             }
           },
           "metadata": {
@@ -200,12 +200,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 201,
-              "column": 8
+              "line": 228,
+              "column": 6
             },
             "end": {
-              "line": 201,
-              "column": 40
+              "line": 228,
+              "column": 38
             }
           },
           "metadata": {
@@ -221,12 +221,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 206,
-              "column": 8
+              "line": 233,
+              "column": 6
             },
             "end": {
-              "line": 210,
-              "column": 9
+              "line": 237,
+              "column": 7
             }
           },
           "metadata": {
@@ -244,12 +244,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 214,
-              "column": 8
+              "line": 241,
+              "column": 6
             },
             "end": {
-              "line": 217,
-              "column": 9
+              "line": 244,
+              "column": 7
             }
           },
           "metadata": {
@@ -267,12 +267,12 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 228,
-              "column": 4
+              "line": 255,
+              "column": 2
             },
             "end": {
-              "line": 233,
-              "column": 5
+              "line": 260,
+              "column": 3
             }
           },
           "metadata": {},
@@ -286,13 +286,13 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 125,
+              "line": 116,
               "column": 4
             },
             "end": {
-              "line": 128,
+              "line": 119,
               "column": 5
             }
           },
@@ -308,13 +308,13 @@
           "description": "Dispatches `settings-read` custom event to settings provider to read\napplication settings and sets received values on the component.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 135,
+              "line": 126,
               "column": 4
             },
             "end": {
-              "line": 143,
+              "line": 134,
               "column": 5
             }
           },
@@ -331,13 +331,13 @@
           "description": "Reads settings from the settings provider",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 148,
+              "line": 139,
               "column": 4
             },
             "end": {
-              "line": 161,
+              "line": 152,
               "column": 5
             }
           },
@@ -354,12 +354,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 235,
-              "column": 4
+              "line": 262,
+              "column": 2
             },
             "end": {
-              "line": 268,
-              "column": 5
+              "line": 295,
+              "column": 3
             }
           },
           "metadata": {},
@@ -375,12 +375,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 270,
-              "column": 4
+              "line": 297,
+              "column": 2
             },
             "end": {
-              "line": 278,
-              "column": 5
+              "line": 305,
+              "column": 3
             }
           },
           "metadata": {},
@@ -398,13 +398,13 @@
           "description": "Dispatches `settings-changed` to settings provider with new value.\nThe event is dispatched with 300 ms debouncer.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 175,
+              "line": 166,
               "column": 4
             },
             "end": {
-              "line": 194,
+              "line": 185,
               "column": 5
             }
           },
@@ -431,13 +431,13 @@
           "description": "Dispatches `settings-changed` event to store the setting value.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 200,
+              "line": 191,
               "column": 4
             },
             "end": {
-              "line": 215,
+              "line": 206,
               "column": 5
             }
           },
@@ -464,13 +464,13 @@
           "description": "Returns a boolean value for the `value`.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 221,
+              "line": 212,
               "column": 4
             },
             "end": {
-              "line": 235,
+              "line": 226,
               "column": 5
             }
           },
@@ -491,13 +491,13 @@
           "description": "Returns a numeric value for the `value`",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 241,
+              "line": 232,
               "column": 4
             },
             "end": {
-              "line": 247,
+              "line": 238,
               "column": 5
             }
           },
@@ -520,13 +520,13 @@
           "description": "Shows internal sub-page",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 253,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 270,
+              "line": 261,
               "column": 5
             }
           },
@@ -547,13 +547,13 @@
           "description": "Restores the main page of the editor.",
           "privacy": "public",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 274,
+              "line": 265,
               "column": 4
             },
             "end": {
-              "line": 276,
+              "line": 267,
               "column": 5
             }
           },
@@ -569,13 +569,13 @@
           "description": "To be used when a list item has a toggle button.\nWhen clicking on the list option this function should be called to\ntoggle the button.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 283,
+              "line": 274,
               "column": 4
             },
             "end": {
-              "line": 286,
+              "line": 277,
               "column": 5
             }
           },
@@ -596,13 +596,13 @@
           "description": "Cancels the event and it's propagation.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 291,
+              "line": 282,
               "column": 4
             },
             "end": {
-              "line": 294,
+              "line": 285,
               "column": 5
             }
           },
@@ -623,13 +623,13 @@
           "description": "Opens a URL in new window.\nIf the application handle `open-external-url` then it does nothing.",
           "privacy": "protected",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 301,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 315,
+              "line": 306,
               "column": 5
             }
           },
@@ -650,13 +650,13 @@
           "description": "Handler for `settings-changed` event.\nCalls `_settingsChanged` function if implementing element has this method.",
           "privacy": "private",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 321,
+              "line": 312,
               "column": 4
             },
             "end": {
-              "line": 329,
+              "line": 320,
               "column": 5
             }
           },
@@ -678,12 +678,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 221,
-              "column": 4
+              "line": 248,
+              "column": 2
             },
             "end": {
-              "line": 226,
-              "column": 5
+              "line": 253,
+              "column": 3
             }
           },
           "metadata": {},
@@ -699,12 +699,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 280,
-              "column": 4
+              "line": 307,
+              "column": 2
             },
             "end": {
-              "line": 282,
-              "column": 5
+              "line": 309,
+              "column": 3
             }
           },
           "metadata": {},
@@ -723,12 +723,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 284,
-              "column": 4
+              "line": 311,
+              "column": 2
             },
             "end": {
-              "line": 286,
-              "column": 5
+              "line": 313,
+              "column": 3
             }
           },
           "metadata": {},
@@ -747,12 +747,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 288,
-              "column": 4
+              "line": 315,
+              "column": 2
             },
             "end": {
-              "line": 290,
-              "column": 5
+              "line": 317,
+              "column": 3
             }
           },
           "metadata": {},
@@ -771,12 +771,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 292,
-              "column": 4
+              "line": 319,
+              "column": 2
             },
             "end": {
-              "line": 294,
-              "column": 5
+              "line": 321,
+              "column": 3
             }
           },
           "metadata": {},
@@ -795,12 +795,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 296,
-              "column": 4
+              "line": 323,
+              "column": 2
             },
             "end": {
-              "line": 298,
-              "column": 5
+              "line": 325,
+              "column": 3
             }
           },
           "metadata": {},
@@ -819,12 +819,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 300,
-              "column": 4
+              "line": 327,
+              "column": 2
             },
             "end": {
-              "line": 311,
-              "column": 5
+              "line": 338,
+              "column": 3
             }
           },
           "metadata": {},
@@ -846,12 +846,12 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 317,
-              "column": 4
+              "line": 344,
+              "column": 2
             },
             "end": {
-              "line": 323,
-              "column": 5
+              "line": 350,
+              "column": 3
             }
           },
           "metadata": {},
@@ -876,12 +876,12 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 158,
-          "column": 2
+          "line": 51,
+          "column": 0
         },
         "end": {
-          "line": 324,
-          "column": 3
+          "line": 351,
+          "column": 1
         }
       },
       "privacy": "public",
@@ -892,13 +892,13 @@
           "name": "manual",
           "description": "When set the element will not request current settings state and\nwill wait until it's properties are set.",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 99,
+              "line": 90,
               "column": 8
             },
             "end": {
-              "line": 99,
+              "line": 90,
               "column": 23
             }
           },
@@ -910,13 +910,13 @@
           "name": "loading",
           "description": "When set the settings are baing loaded.",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 103,
+              "line": 94,
               "column": 8
             },
             "end": {
-              "line": 103,
+              "line": 94,
               "column": 62
             }
           },
@@ -928,13 +928,13 @@
           "name": "page",
           "description": "Some panels have sub pages. This tracks selected page.",
           "sourceRange": {
-            "file": "../arc-settings-panel-mixin/arc-settings-panel-mixin.html",
+            "file": "../@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js",
             "start": {
-              "line": 107,
+              "line": 98,
               "column": 8
             },
             "end": {
-              "line": 107,
+              "line": 98,
               "column": 20
             }
           },
@@ -947,12 +947,12 @@
           "description": "Variables support enabled setting.",
           "sourceRange": {
             "start": {
-              "line": 167,
-              "column": 8
+              "line": 194,
+              "column": 6
             },
             "end": {
-              "line": 171,
-              "column": 9
+              "line": 198,
+              "column": 7
             }
           },
           "metadata": {},
@@ -963,12 +963,12 @@
           "description": "Sequest default timeout setting.",
           "sourceRange": {
             "start": {
-              "line": 175,
-              "column": 8
+              "line": 202,
+              "column": 6
             },
             "end": {
-              "line": 179,
-              "column": 9
+              "line": 206,
+              "column": 7
             }
           },
           "metadata": {},
@@ -979,12 +979,12 @@
           "description": "Global option to follow redirects",
           "sourceRange": {
             "start": {
-              "line": 183,
-              "column": 8
+              "line": 210,
+              "column": 6
             },
             "end": {
-              "line": 187,
-              "column": 9
+              "line": 214,
+              "column": 7
             }
           },
           "metadata": {},
@@ -995,12 +995,12 @@
           "description": "Collects information abour system variables when evaluating\nrequest.",
           "sourceRange": {
             "start": {
-              "line": 192,
-              "column": 8
+              "line": 219,
+              "column": 6
             },
             "end": {
-              "line": 196,
-              "column": 9
+              "line": 223,
+              "column": 7
             }
           },
           "metadata": {},
@@ -1011,12 +1011,12 @@
           "description": "When set `systemVariablesEnabled` options is disabled.\nChrome apps does not have this option.",
           "sourceRange": {
             "start": {
-              "line": 201,
-              "column": 8
+              "line": 228,
+              "column": 6
             },
             "end": {
-              "line": 201,
-              "column": 40
+              "line": 228,
+              "column": 38
             }
           },
           "metadata": {},
@@ -1027,12 +1027,12 @@
           "description": "Default OAuth 2 redirect URI.",
           "sourceRange": {
             "start": {
-              "line": 206,
-              "column": 8
+              "line": 233,
+              "column": 6
             },
             "end": {
-              "line": 210,
-              "column": 9
+              "line": 237,
+              "column": 7
             }
           },
           "metadata": {},
@@ -1043,12 +1043,12 @@
           "description": "The default value for the OAuth2 redirect URI if missing.",
           "sourceRange": {
             "start": {
-              "line": 214,
-              "column": 8
+              "line": 241,
+              "column": 6
             },
             "end": {
-              "line": 217,
-              "column": 9
+              "line": 244,
+              "column": 7
             }
           },
           "metadata": {},
@@ -1094,7 +1094,7 @@
       "slots": [],
       "tagname": "arc-request-settings-panel",
       "mixins": [
-        "ArcComponents.ArcSettingsPanelMixin"
+        "ArcSettingsPanelMixin"
       ]
     }
   ]

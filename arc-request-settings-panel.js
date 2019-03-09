@@ -11,21 +11,20 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { PolymerElement } from '../../@polymer/polymer/polymer-element.js';
-
-import '../../@polymer/paper-item/paper-item.js';
-import '../../@polymer/paper-item/paper-item-body.js';
-import '../../@polymer/paper-input/paper-input.js';
-import '../../@polymer/paper-toggle-button/paper-toggle-button.js';
-import '../../@polymer/iron-icon/iron-icon.js';
-import '../../@polymer/iron-flex-layout/iron-flex-layout.js';
-import '../../arc-icons/arc-icons.js';
-import '../../@polymer/iron-pages/iron-pages.js';
-import '../../@polymer/paper-icon-button/paper-icon-button.js';
-import '../../@polymer/paper-styles/shadow.js';
-import '../../arc-settings-panel-mixin/arc-settings-panel-mixin.js';
-import '../../arc-settings-panel-mixin/arc-settings-panel-styles.js';
-import { html } from '../../@polymer/polymer/lib/utils/html-tag.js';
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-item/paper-item.js';
+import '@polymer/paper-item/paper-item-body.js';
+import '@polymer/paper-input/paper-input.js';
+import '@polymer/paper-toggle-button/paper-toggle-button.js';
+import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@advanced-rest-client/arc-icons/arc-icons.js';
+import '@polymer/iron-pages/iron-pages.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/paper-styles/shadow.js';
+import {ArcSettingsPanelMixin} from '@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js';
+import '@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-styles.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 /**
  * Request settings panel for Advanced REST Client
  *
@@ -48,9 +47,9 @@ import { html } from '../../@polymer/polymer/lib/utils/html-tag.js';
  * @polymer
  * @demo demo/index.html
  * @memberof UiElements
- * @appliesMixin ArcComponents.ArcSettingsPanelMixin
+ * @appliesMixin ArcSettingsPanelMixin
  */
-class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(PolymerElement) {
+class ArcRequestSettingsPanel extends ArcSettingsPanelMixin(PolymerElement) {
   static get template() {
     return html`
     <style include="arc-settings-panel-styles">
@@ -95,7 +94,10 @@ class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polyme
               </div>
               <div secondary="">Use application variables when processing request</div>
             </paper-item-body>
-            <paper-toggle-button tabindex="-1" checked="{{appVariablesEnabled}}" on-click="_cancelEvent"></paper-toggle-button>
+            <paper-toggle-button
+              tabindex="-1"
+              checked="{{appVariablesEnabled}}"
+              on-click="_cancelEvent"></paper-toggle-button>
           </paper-item>
 
           <paper-item class="clickable" on-click="_toggleOption" disabled\$="[[systemVariablesDisabled]]">
@@ -105,7 +107,11 @@ class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polyme
               </div>
               <div secondary="">Include system variables when processing request</div>
             </paper-item-body>
-            <paper-toggle-button tabindex="-1" checked="{{systemVariablesEnabled}}" on-click="_cancelEvent" disabled="[[systemVariablesDisabled]]"></paper-toggle-button>
+            <paper-toggle-button
+              tabindex="-1"
+              checked="{{systemVariablesEnabled}}"
+              on-click="_cancelEvent"
+              disabled="[[systemVariablesDisabled]]"></paper-toggle-button>
           </paper-item>
 
           <paper-item class="clickable" on-click="_toggleOption">
@@ -115,7 +121,10 @@ class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polyme
               </div>
               <div secondary="">Automatically follow redirects when making a request</div>
             </paper-item-body>
-            <paper-toggle-button tabindex="-1" checked="{{followRedirects}}" on-click="_cancelEvent"></paper-toggle-button>
+            <paper-toggle-button
+              tabindex="-1"
+              checked="{{followRedirects}}"
+              on-click="_cancelEvent"></paper-toggle-button>
           </paper-item>
         </div>
       </section>
@@ -130,12 +139,21 @@ class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polyme
             <paper-item-body>
               <div>Request timeout</div>
             </paper-item-body>
-            <paper-input no-label-float="" min="0" step="1" type="number" value="{{requestDefaultTimeout}}" placeholder="Timeout" pattern="[0-9]*" error-message="Enter time as a number">=
+            <paper-input
+              no-label-float
+              min="0"
+              step="1"
+              type="number"
+              value="{{requestDefaultTimeout}}"
+              placeholder="Timeout"
+              pattern="[0-9]*"
+              error-message="Enter time as a number">=
               <div slot="suffix">seconds</div>
             </paper-input>
           </paper-item>
           <p>
-            When set to "0" (zero) then the request will never timeout. If the server does not close the connection and sends no response then the request will never end.
+            When set to "0" (zero) then the request will never timeout.
+            If the server does not close the connection and sends no response then the request will never end.
           </p>
           <p>
             Set the value to positive number to set the time (in seconds) after which the request will timeout.
@@ -150,9 +168,18 @@ class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polyme
         </h2>
 
         <div class="card">
-          <paper-input class="oauth2-redirect" value="[[oauth2redirectUri]]" type="url" label="URI value" required="" auto-validate="" error-message="Enter valid URL" on-change="_updateOAuthRedirect"></paper-input>
+          <paper-input
+            class="oauth2-redirect"
+            value="[[oauth2redirectUri]]"
+            type="url"
+            label="URI value"
+            required
+            auto-validate
+            error-message="Enter valid URL"
+            on-change="_updateOAuthRedirect"></paper-input>
           <p>
-            This value is used by the authorization panel in the request editor. ARC will use this URI to pass it to the autorization server.
+            This value is used by the authorization panel in the request editor.
+            ARC will use this URI to pass it to the autorization server.
           </p>
         </div>
       </section>
@@ -160,9 +187,6 @@ class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polyme
 `;
   }
 
-  static get is() {
-    return 'arc-request-settings-panel';
-  }
   static get properties() {
     return {
       /**
@@ -326,4 +350,4 @@ class ArcRequestSettingsPanel extends ArcComponents.ArcSettingsPanelMixin(Polyme
     this.updateSetting('oauth2redirectUri', uri);
   }
 }
-window.customElements.define(ArcRequestSettingsPanel.is, ArcRequestSettingsPanel);
+window.customElements.define('arc-request-settings-panel', ArcRequestSettingsPanel);

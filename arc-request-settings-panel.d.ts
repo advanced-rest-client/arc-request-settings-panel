@@ -5,26 +5,18 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   arc-request-settings-panel.html
+ *   arc-request-settings-panel.js
  */
 
 
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
 // tslint:disable:no-any describes the API as best we are able today
 
-/// <reference path="../polymer/types/polymer-element.d.ts" />
-/// <reference path="../paper-item/paper-item.d.ts" />
-/// <reference path="../paper-item/paper-item-body.d.ts" />
-/// <reference path="../paper-input/paper-input.d.ts" />
-/// <reference path="../paper-toggle-button/paper-toggle-button.d.ts" />
-/// <reference path="../iron-icon/iron-icon.d.ts" />
-/// <reference path="../iron-flex-layout/iron-flex-layout.d.ts" />
-/// <reference path="../arc-icons/arc-icons.d.ts" />
-/// <reference path="../iron-pages/iron-pages.d.ts" />
-/// <reference path="../paper-icon-button/paper-icon-button.d.ts" />
-/// <reference path="../paper-styles/shadow.d.ts" />
-/// <reference path="../arc-settings-panel-mixin/arc-settings-panel-mixin.d.ts" />
-/// <reference path="../arc-settings-panel-mixin/arc-settings-panel-styles.d.ts" />
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+
+import {ArcSettingsPanelMixin} from '@advanced-rest-client/arc-settings-panel-mixin/arc-settings-panel-mixin.js';
+
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
 declare namespace UiElements {
 
@@ -47,7 +39,7 @@ declare namespace UiElements {
    * `--arc-font-subhead` | Mixin applied to the section headers | `{}`
    */
   class ArcRequestSettingsPanel extends
-    ArcComponents.ArcSettingsPanelMixin(
+    ArcSettingsPanelMixin(
     Object) {
 
     /**
@@ -105,6 +97,9 @@ declare namespace UiElements {
   }
 }
 
-interface HTMLElementTagNameMap {
-  "arc-request-settings-panel": UiElements.ArcRequestSettingsPanel;
+declare global {
+
+  interface HTMLElementTagNameMap {
+    "arc-request-settings-panel": UiElements.ArcRequestSettingsPanel;
+  }
 }
