@@ -126,6 +126,19 @@ class ArcRequestSettingsPanel extends ArcSettingsPanelMixin(PolymerElement) {
               checked="{{followRedirects}}"
               on-click="_cancelEvent"></paper-toggle-button>
           </paper-item>
+
+          <paper-item class="clickable" on-click="_toggleOption">
+            <paper-item-body two-line="">
+              <div>
+                Ignore content related headers for GET request
+              </div>
+              <div secondary="">Ignore all <b>Content-*</b> headers when making a GET request.</div>
+            </paper-item-body>
+            <paper-toggle-button
+              tabindex="-1"
+              checked="{{ignoreContentOnGet}}"
+              on-click="_cancelEvent"></paper-toggle-button>
+          </paper-item>
         </div>
       </section>
 
@@ -242,6 +255,14 @@ class ArcRequestSettingsPanel extends ArcSettingsPanelMixin(PolymerElement) {
       defaultOauth2RedirectUri: {
         type: String,
         value: 'https://auth.advancedrestclient.com/oauth-popup.html'
+      },
+      /**
+       * Ignore `content-*` headers when making GET request
+       */
+      ignoreContentOnGet: {
+        type: Boolean,
+        notify: true,
+        observer: '_ignoreContentOnGetChanged'
       }
     };
   }
@@ -292,6 +313,12 @@ class ArcRequestSettingsPanel extends ArcSettingsPanelMixin(PolymerElement) {
     if (typeof values.oauth2redirectUri === 'undefined') {
       values.oauth2redirectUri = this.defaultOauth2RedirectUri;
     }
+
+    if (typeof values.ignoreContentOnGet === 'undefined') {
+      values.ignoreContentOnGet = false;
+    } else {
+      values.ignoreContentOnGet = this._boolValue(values.ignoreContentOnGet);
+    }
     return values;
   }
 
@@ -302,6 +329,7 @@ class ArcRequestSettingsPanel extends ArcSettingsPanelMixin(PolymerElement) {
     this.requestDefaultTimeout = values.requestDefaultTimeout;
     this.systemVariablesEnabled = values.systemVariablesEnabled;
     this.oauth2redirectUri = values.oauth2redirectUri;
+    this.ignoreContentOnGet = values.ignoreContentOnGet;
     this.__settingsRestored = true;
   }
 
@@ -325,6 +353,10 @@ class ArcRequestSettingsPanel extends ArcSettingsPanelMixin(PolymerElement) {
     this.updateSetting('oauth2redirectUri', value);
   }
 
+  _ignoreContentOnGetChanged(value) {
+    this.updateSetting('ignoreContentOnGet', value);
+  }
+
   _settingsChanged(key, value) {
     this.__settingsRestored = false;
     switch (key) {
@@ -332,6 +364,7 @@ class ArcRequestSettingsPanel extends ArcSettingsPanelMixin(PolymerElement) {
       case 'systemVariablesEnabled':
       case 'requestDefaultTimeout':
       case 'followRedirects':
+      case 'ignoreContentOnGet':
         this[key] = value;
         break;
     }

@@ -62,7 +62,8 @@
     [
       ['local variables', 2, 'appVariablesEnabled'],
       ['system variables', 3, 'systemVariablesEnabled'],
-      ['redirects', 4, 'followRedirects']
+      ['redirects', 4, 'followRedirects'],
+      ['Ignore content headers for GET', 5, 'ignoreContentOnGet']
     ].forEach((item) => {
       test(`Toggles ${item[0]}`, function() {
         const node = element.shadowRoot.querySelectorAll('paper-item')[item[1]];
@@ -141,7 +142,8 @@
       ['appVariablesEnabled', true],
       ['followRedirects', true],
       ['systemVariablesEnabled', true],
-      ['requestDefaultTimeout', 10]
+      ['requestDefaultTimeout', 10],
+      ['ignoreContentOnGet', true]
     ].forEach((item) => {
       test(`Updates value for ${item[0]}`, function() {
         fire(item[0], item[1]);
@@ -173,7 +175,11 @@
       ['systemVariablesEnabled', false, false],
       ['systemVariablesEnabled', 'false', false],
       ['oauth2redirectUri', undefined, 'https://auth.advancedrestclient.com/oauth-popup.html'],
-      ['oauth2redirectUri', 'https://auth.domain.com', 'https://auth.domain.com']
+      ['oauth2redirectUri', 'https://auth.domain.com', 'https://auth.domain.com'],
+      ['ignoreContentOnGet', undefined, false],
+      ['ignoreContentOnGet', true, true],
+      ['ignoreContentOnGet', false, false],
+      ['ignoreContentOnGet', 'false', false]
     ].forEach((item) => {
       test(`Sets value of ${item[0]} when ${item[1]}`, () => {
         const values = {};
@@ -195,11 +201,13 @@
       ['followRedirects', true],
       ['requestDefaultTimeout', true],
       ['systemVariablesEnabled', true],
+      ['ignoreContentOnGet', true],
       ['appVariablesEnabled', false],
       ['followRedirects', false],
       ['requestDefaultTimeout', false],
       ['systemVariablesEnabled', false],
-      ['oauth2redirectUri', 'https://auth.domain.com']
+      ['oauth2redirectUri', 'https://auth.domain.com'],
+      ['ignoreContentOnGet', false]
     ].forEach((item) => {
       test(`Sets value of ${item[0]}`, () => {
         const values = {};
